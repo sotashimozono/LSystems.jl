@@ -6,5 +6,9 @@
   "rules": {
     "A": "B-A-B",
     "B": "A+B+A"
+  },
+  "metadata": {
+    "description": "A recursive fractal based on triangular subdivision, resulting in a lattice with a Hausdorff dimension of approximately 1.585. It is widely used to study quantum transport, percolation, and spectral densities in systems where Euclidean connectivity is broken, providing insight into how dimensionality affects physical phase transitions.",
+    "figure": { "shape": "shape.png" }
   }
 }

@@ -6,5 +6,9 @@
   "rules": {
     "A": "A-B--B+A++AA+B-",
     "B": "+A-BB--B-A++A+B"
+  },
+  "metadata": {
+    "description": "A hexagonal space-filling curve that tiles the plane with 'Gosper islands'. It maps hexagonal/triangular lattices to a 1D chain, making it uniquely suited for studying quantum systems with C6 symmetry (like graphene) using 1D tensor network methods like DMRG.",
+    "figure": { "shape": "shape.png" }
   }
 }

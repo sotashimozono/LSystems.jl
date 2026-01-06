@@ -5,5 +5,9 @@
   "angle": 60.0,
   "rules": {
     "F": "F-F++F-F"
+  },
+  "metadata": {
+    "description": "The closed-loop form of the Koch curve starting from an equilateral triangle. It is a classic example of a shape with a finite area but an infinite perimeter. Used in condensed matter physics to model fractal interfaces, heat transfer in complex boundaries, and the distribution of vibrational modes on fractal membranes.",
+    "figure": { "shape": "shape.png" }
   }
 }

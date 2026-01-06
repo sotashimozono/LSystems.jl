@@ -1,14 +1,14 @@
-using MyModule
+using LSystems
 using Documenter
 
 makedocs(
-    sitename = "MyModule.jl",
-    modules  = [MyModule],
+    sitename = "LSystems.jl",
+    modules  = [LSystems],
     pages    = [
         "Home" => "index.md"
     ]
 )
 
 deploydocs(
-    repo = "github.com/sotashimozono/MyModule.jl.git",
+    repo = "github.com/sotashimozono/LSystems.jl.git",
 )

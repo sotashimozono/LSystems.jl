@@ -5,6 +5,11 @@
   "angle": 90.0,
   "rules": {
     "X": "XFYFX+F+YFXFY-F-XFYFX",
-    "Y": "YFXFY-F-XFYFX+F+YFXFY"
+    "Y": "YFXFY-F-XFYFX+F+YFXFY",
+    "F": "F"
+  },
+  "metadata": {
+    "description": "The first discovered space-filling curve (1890). It tiles a square lattice using a 3x3 recursive decomposition. In the context of lattice models, it provides an alternative 1D traversal path for 2D systems, offering different locality properties compared to the 2x2 based Hilbert curve.",
+    "figure": { "shape": "shape.png" }
   }
 }

@@ -1,10 +1,16 @@
 {
-  "name": "Fibonacci",
+  "name": "FibonacciFractal",
   "axiom": "S",
   "accept":["L","S"],
-  "angle": 0.0,
+  "angle": 90,
   "rules": {
     "S": "L",
     "L": "LS"
+  },
+  "metadata": {
+    "description": "Fibonacci Fractal L-system configuration. Generates a sequence of line segments whose lengths correspond to Fibonacci numbers.",
+    "figure": {
+      "shape": "shape.png"
+    }
   }
 }

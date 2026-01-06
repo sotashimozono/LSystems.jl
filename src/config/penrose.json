@@ -8,5 +8,9 @@
     "X": "+YF--ZF[3-WF--XF]+",
     "Y": "-WF++XF[+++YF++ZF]-",
     "Z": "--YF++++WF[+ZF++++XF]--XF"
+  },
+  "metadata": {
+    "description": "An L-system implementation of the P3 Penrose tiling, exhibiting five-fold rotational symmetry and non-periodic order. This model is essential for exploring electronic states and topological phases in quasicrystals, where traditional Bloch theorem and periodic boundary conditions are no longer applicable.",
+    "figure": { "shape": "shape.png" }
   }
 }

@@ -5,5 +5,9 @@
   "angle": 60.0,
   "rules": {
     "F": "F+F--F+F"
+  },
+  "metadata": {
+    "description": "A fundamental fractal curve defined by an iterative subdivision of a line segment. It demonstrates the concept of infinite length within a bounded space. In physical contexts, it serves as a model for studying wave scattering and boundary effects in fractal-shaped conductors or resonators.",
+    "figure": { "shape": "shape.png" }
   }
 }

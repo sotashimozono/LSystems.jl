@@ -1,7 +1,7 @@
-# MyModule.jl
+# LSystems.jl
 
 ## Models
 
 ```@autodocs
-Modules = [MyModule]
+Modules = [LSystems]
 ```

@@ -5,6 +5,11 @@
   "angle": 90.0,
   "rules": {
     "A": "-BF+AFA+FB-",
-    "B": "+AF-BFB-FA+"
+    "B": "+AF-BFB-FA+",
+    "F": "F"
+  },
+  "metadata": {
+    "description": "Standard space-filling curve tiling a square grid. By recursively mapping 2D coordinates to a 1D sequence, it preserves spatial locality more effectively than simple raster scanning. This makes it a cornerstone for designing 1D paths in Matrix Product State (MPS) simulations of 2D quantum systems.",
+    "figure": { "shape": "shape.png" }
   }
 }
