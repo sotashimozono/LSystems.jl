@@ -1,0 +1,10 @@
+{
+  "name": "PeanoPath",
+  "axiom": "X",
+  "accept": ["F"],
+  "angle": 90.0,
+  "rules": {
+    "X": "XFYFX+F+YFXFY-F-XFYFX",
+    "Y": "YFXFY-F-XFYFX+F+YFXFY"
+  }
+}

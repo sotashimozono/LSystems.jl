@@ -1,0 +1,9 @@
+{
+  "name": "KochCurve",
+  "axiom": "F",
+  "accept": ["F"],
+  "angle": 60.0,
+  "rules": {
+    "F": "F+F--F+F"
+  }
+}

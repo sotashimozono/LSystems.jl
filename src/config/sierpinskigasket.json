@@ -1,0 +1,10 @@
+{
+  "name": "SierpinskiGasket",
+  "axiom": "A",
+  "accept": ["A", "B"],
+  "angle": 60.0,
+  "rules": {
+    "A": "B-A-B",
+    "B": "A+B+A"
+  }
+}

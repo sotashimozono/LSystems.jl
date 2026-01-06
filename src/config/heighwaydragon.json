@@ -1,0 +1,10 @@
+{
+  "name": "HeighwayDragon",
+  "axiom": "FX",
+  "accept": ["F"],
+  "angle": 90.0,
+  "rules": {
+    "X": "X+YF+",
+    "Y": "-FX-Y"
+  }
+}

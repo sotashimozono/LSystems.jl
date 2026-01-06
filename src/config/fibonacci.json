@@ -1,0 +1,10 @@
+{
+  "name": "Fibonacci",
+  "axiom": "S",
+  "accept":["L","S"],
+  "angle": 0.0,
+  "rules": {
+    "S": "L",
+    "L": "LS"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "HilbeltPath",
+  "axiom": "A",
+  "accept": ["F"],
+  "angle": 90.0,
+  "rules": {
+    "A": "-BF+AFA+FB-",
+    "B": "+AF-BFB-FA+"
+  }
+}
