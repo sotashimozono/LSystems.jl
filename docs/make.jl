@@ -1,14 +1,23 @@
-using LSystems
 using Documenter
+using LSystems
 
-makedocs(
-    sitename = "LSystems.jl",
-    modules  = [LSystems],
-    pages    = [
-        "Home" => "index.md"
-    ]
+const DOCS_SRC_FIGURES = joinpath(@__DIR__, "src", "assets", "figures")
+makedocs(;
+    sitename="LSystems.jl",
+    modules=[LSystems],
+    format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", nothing) == "true",
+        assets=String[],
+    ),
+    pages=[
+        "Home" => "index.md",
+        "Model Library" => "library.md",
+        "API Reference" => "api.md",
+    ],
+    warnonly=[:missing_docs, :cross_references],
 )
 
-deploydocs(
-    repo = "github.com/sotashimozono/LSystems.jl.git",
+deploydocs(;
+    repo="github.com/sotashimozono/LSystems.jl.git",
+    devbranch="main",
 )
