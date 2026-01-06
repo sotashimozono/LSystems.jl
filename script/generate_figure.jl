@@ -21,5 +21,7 @@ for (name, lsys) in DEFINED_LSYSTEMS
         ticks=false,
         framestyle=:none,
     )
-    savefig(p, joinpath(LSystems.FIGURE_DIR, "$(name)", "shape.png"))
+    path = joinpath(LSystems.FIGURE_DIR, "$(name)")
+    isdir(path) || mkpath(path)
+    savefig(p, joinpath(path, "shape.png"))
 end

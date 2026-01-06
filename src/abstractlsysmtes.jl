@@ -8,16 +8,32 @@ function build_lsystem_type(filepath::String)
     rules_dict = Dict{Char,String}(String(k)[1] => v for (k, v) in data.rules)
     accept_set = Set{Char}(String(s)[1] for s in data.accept)
 
-    desc = get(data, :description, "$(data.name) L-System Model")
+    meta = data.metadata
+    desc = get(meta, :description, "$(data.name) L-System Model")
+
+    figure_path = joinpath(FIGURE_DIR, "$(data.name)")
+    fig_name = joinpath(figure_path, meta.figure.shape)
+
     doc_text = """
         $(data.name){N, T} <: AbstractTiles{N, T}
 
     $desc
 
-    ### Meta Properties
-    - **Axiom**: `$(data.axiom)`
-    - **Angle**: $(data.angle)°
-    - **Accept**: $(data.accept)
+    ### Visual Representation
+    ![]($fig_name)
+
+    ### Configuration
+    | Property | Value |
+    | :--- | :--- |
+    | **Axiom** | `$(data.axiom)` |
+    | **Angle** | $(data.angle)° |
+    | **Accept Symbols** | `$(data.accept)` |
+
+    ### Metadata
+    | Key | Value |
+    | :--- | :--- |
+    | **Source File** | `$(splitpath(filepath)[end])` |
+    | **Type** | L-System |
     """
 
     instance = @eval begin
