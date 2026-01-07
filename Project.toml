@@ -12,3 +12,9 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 JSON3 = "1.14.3"
 LinearAlgebra = "1.12.0"
 StaticArrays = "1.9.16"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
