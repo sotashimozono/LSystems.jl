@@ -1,11 +1,11 @@
 ENV["GKSwstype"] = "100"
 
+using LSystems, Test
+const dirs = []
+
 const FIG_BASE = joinpath(pkgdir(LSystems), "docs", "src", "assets", "figures")
 const PATHS = Dict()
 mkpath.(values(PATHS))
-
-using LSystems, Test
-const dirs = []
 
 @testset "tests" begin
     test_args = copy(ARGS)
