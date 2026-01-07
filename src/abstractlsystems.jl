@@ -46,11 +46,18 @@ function build_lsystem_type(filepath::String)
             accept::Set{Char}
         end
 
+        function $struct_name()
+            return $struct_name{2,Float64}(
+                $(string(data.axiom)),
+                $rules_dict,
+                deg2rad(Float64($(data.angle))),
+                $accept_set,
+            )
+        end
+        
         @doc $doc_text $struct_name
 
-        $struct_name{2,Float64}(
-            $(string(data.axiom)), $rules_dict, deg2rad(Float64($(data.angle))), $accept_set
-        )
+        $struct_name()
     end
 
     @eval export $struct_name
