@@ -11,7 +11,9 @@ function build_lsystem_type(filepath::String)
     meta = data.metadata
     desc = get(meta, :description, "$(data.name) L-System Model")
 
-    figure_path = joinpath(FIGURE_DIR, "$(data.name)")
+    base_name = basename(filepath)
+    asset_path = splitext(base_name)[1]
+    figure_path = joinpath("assets", "figures", asset_path)
     fig_name = joinpath(figure_path, meta.figure.shape)
 
     doc_text = """
@@ -20,7 +22,7 @@ function build_lsystem_type(filepath::String)
     $desc
 
     ### Visual Representation
-    ![]($fig_name)
+    ![Here should be a Figure]($(fig_name))
 
     ### Configuration
     | Property | Value |
@@ -47,10 +49,7 @@ function build_lsystem_type(filepath::String)
         @doc $doc_text $struct_name
 
         $struct_name{2,Float64}(
-            $(string(data.axiom)),
-            $rules_dict,
-            deg2rad(Float64($(data.angle))),
-            $accept_set,
+            $(string(data.axiom)), $rules_dict, deg2rad(Float64($(data.angle))), $accept_set
         )
     end
 
