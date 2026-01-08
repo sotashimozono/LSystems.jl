@@ -1,7 +1,7 @@
 ENV["GKSwstype"] = "100"
 
 using LSystems, Test
-const dirs = []
+const dirs = ["core"]
 
 const FIG_BASE = joinpath(pkgdir(LSystems), "docs", "src", "assets", "figures")
 const PATHS = Dict()
