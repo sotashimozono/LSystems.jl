@@ -1,6 +1,6 @@
 name = "LSystems"
 uuid = "a3e1f8ee-70d8-4c26-a6f5-dc669742461a"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["sota <shimozono-sota631@g.ecc.u-tokyo.ac.jp>"]
 
 [deps]
