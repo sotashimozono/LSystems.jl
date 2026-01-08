@@ -1,7 +1,7 @@
 ENV["GKSwstype"] = "100"
 
 using LSystems, Test
-const dirs = []
+const dirs = ["core"]
 
 const FIG_BASE = joinpath(pkgdir(LSystems), "docs", "src", "assets", "figures")
 const PATHS = Dict()
@@ -13,7 +13,9 @@ mkpath.(values(PATHS))
     @time for dir in dirs
         dirpath = joinpath(@__DIR__, dir)
         println("\nTest $(dirpath)")
-        files = sort(filter(f -> startswith(f, "test_") && endswith(f, ".jl"), readdir(dirpath)))
+        files = sort(
+            filter(f -> startswith(f, "test_") && endswith(f, ".jl"), readdir(dirpath))
+        )
         if isempty(files)
             println("  No test files found in $(dirpath).")
         else
