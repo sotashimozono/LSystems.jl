@@ -53,7 +53,7 @@ function substitution_matrix(tile::AbstractTiles; restrict_level::Int=0)
     indices = [res_full.lookup[c] for c in target_alphabet]
 
     # 3. フル空間のインデックスの中から、抽出対象のインデックスを特定
-    # alphabet は sort されているため、ここでもソートして順序を一貫させる
+    # alphabet は sort し、順序を一貫させる
     target_alphabet = sort([c for c in basis_set if haskey(res_full.lookup, c)])
     indices = [res_full.lookup[c] for c in target_alphabet]
 
@@ -106,3 +106,38 @@ function substitution_matrix_full(tile::AbstractTiles)
     return (matrix=M, alphabet=alphabet, lookup=lookup)
 end
 export substitution_matrix_full
+
+
+"""
+    stationary_density(tile::AbstractTiles; restrict_level::Int=1)
+
+L-system の固定点における各記号の出現比率（定常密度）を計算する。
+restrict_level=1 (成長の核) を使用することを推奨。
+
+# 戻り値
+- `Dict{Char, Float64}`: 記号 => 出現確率 (合計が 1.0 に規格化される)
+"""
+function stationary_density(tile::AbstractTiles; restrict_level::Int=1)
+    # 1. 指定レベルの置換行列を取得
+    res = substitution_matrix(tile; restrict_level=restrict_level)
+    M = res.matrix
+    alphabet = res.alphabet
+    
+    # 2. 固有値・固有ベクトルを計算
+    # 疎行列から密度行列へ変換して eigen を実行
+    # (小さな行列であればこれで十分。巨大な場合は Arpack.jl 等を検討)
+    vals, vecs = eigen(Array(Float64.(M)))
+    
+    # 3. 最大固有値のインデックスを特定
+    # 実数成分の最大値を探す
+    idx_max = argmax(real.(vals))
+    v_max = real.(vecs[:, idx_max])
+    
+    # 4. 全成分を正にし、和が 1 になるよう規格化
+    v_max = abs.(v_max) 
+    p = v_max ./ sum(v_max)
+    
+    # 5. 文字と確率を対応させて返す
+    return Dict(alphabet[i] => p[i] for i in 1:length(alphabet))
+end
+export stationary_density

@@ -144,3 +144,67 @@ end
         @test maximum(real.(λ_eff)) ≈ 7.0 atol=1e-8
     end
 end
+
+@testset "Fibonacci Chain Matrix Analysis" begin
+    fib_tile = FibonacciFractal()
+    # 黄金比の定義
+    φ = (1 + sqrt(5)) / 2
+    @testset "Substitution Operator Structure" begin
+        # Fibonacci では L, S ともに Rule かつ Accept なので level 0, 1, 2 は一致する
+        res = substitution_matrix(fib_tile, restrict_level=1)
+        M = res.matrix
+        idx = res.lookup
+
+        @test size(M) == (2, 2)
+        @test issetequal(res.alphabet, ['L', 'S'])
+
+        # 行列成分の検証
+        # L (col) -> L:1, S:1
+        # S (col) -> L:1, S:0
+        @test M[idx['L'], idx['L']] == 1
+        @test M[idx['S'], idx['L']] == 1
+        @test M[idx['L'], idx['S']] == 1
+        @test M[idx['S'], idx['S']] == 0
+    end
+
+    @testset "Exact Scaling Analysis (Eigenvalues)" begin
+        res = substitution_matrix(fib_tile, restrict_level=1)
+        # 固有値計算
+        λ = eigvals(Array(Float64.(res.matrix)))
+        max_λ = maximum(real.(λ))
+
+        # 最大固有値が厳密に黄金比 φ であることを確認
+        @test max_λ ≈ φ atol=1e-10
+    end
+
+    @testset "Stationary Density (Eigenvectors)" begin
+        res = substitution_matrix(fib_tile, restrict_level=1)
+        vals, vecs = eigen(Array(Float64.(res.matrix)))
+        
+        # 最大固有値に対応する右固有ベクトルを取得
+        idx_max = argmax(real.(vals))
+        v_fixed = abs.(vecs[:, idx_max])
+        
+        # 定常比率の検証: L:S = φ:1
+        idx = res.lookup
+        ratio_L_S = v_fixed[idx['L']] / v_fixed[idx['S']]
+        
+        @test ratio_L_S ≈ φ atol=1e-10
+    end
+
+    @testset "Total Length Prediction" begin
+        res = substitution_matrix(fib_tile, restrict_level=1)
+        M = res.matrix
+        
+        # 初期状態 "L" (Vector: [1, 0]^T)
+        v0 = [1.0, 0.0]
+        
+        # nステップ後の総文字数は sum(M^n * v0)
+        # フィボナッチ数列: 1, 2, 3, 5, 8, 13, 21, ... と一致するか
+        fib_sequence = [1, 2, 3, 5, 8, 13, 21]
+        for n in 0:6
+            total_count = sum((Array(M)^n) * v0)
+            @test Int(round(total_count)) == fib_sequence[n+1]
+        end
+    end
+end
