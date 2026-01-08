@@ -6,7 +6,7 @@ makedocs(;
     sitename="LSystems.jl",
     modules=[LSystems],
     format=Documenter.HTML(; prettyurls=get(ENV, "CI", nothing) == "true", assets=String[]),
-    pages = [
+    pages=[
         "Home" => "index.md",
         "Substitution Matrix" => "substitution_matrix.md",
         "API Reference" => "api.md",
