@@ -1,6 +1,6 @@
 module LSystems
 
-using LinearAlgebra, StaticArrays, JSON3
+using LinearAlgebra, StaticArrays, SparseArrays, JSON3
 
 const PKG_ROOT = pkgdir(@__MODULE__)
 const CONFIG_DIR = joinpath(@__DIR__, "config")
