@@ -54,7 +54,7 @@ function build_lsystem_type(filepath::String)
                 $accept_set,
             )
         end
-        
+
         @doc $doc_text $struct_name
 
         $struct_name()

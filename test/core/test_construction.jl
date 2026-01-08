@@ -10,27 +10,22 @@ using StaticArrays
 
     # テストデータ: コッホ曲線のような基本的なルール
     # 角度90度, 'A'を移動として受理
-    tile = MockTile{2, Float64}(
-        "A", 
-        Dict('A' => "A+A-A-A+A"), 
-        deg2rad(90.0), 
-        Set(['A'])
-    )
+    tile = MockTile{2,Float64}("A", Dict('A' => "A+A-A-A+A"), deg2rad(90.0), Set(['A']))
 
     @testset "String Evolution (grow_step & grow_string)" begin
         @test LSystems.grow_step(tile, "A") == "A+A-A-A+A"
-        
+
         # 0回、1回、2回の進化
         @test LSystems.grow_string(tile, 0) == "A"
         @test LSystems.grow_string(tile, 1) == "A+A-A-A+A"
 
-        tile_f = MockTile{2, Float64}("AF", Dict('A' => "B"), 0.0, Set(['B']))
-        @test LSystems.grow_step(tile_f, "AF") == "B" 
+        tile_f = MockTile{2,Float64}("AF", Dict('A' => "B"), 0.0, Set(['B']))
+        @test LSystems.grow_step(tile_f, "AF") == "B"
     end
 
     @testset "Geometry Calculation (string2positions)" begin
         # 基本的な直進
-        simple_tile = MockTile{2, Float64}("A", Dict(), deg2rad(90.0), Set(['A']))
+        simple_tile = MockTile{2,Float64}("A", Dict(), deg2rad(90.0), Set(['A']))
         pos = LSystems.string2positions(simple_tile, "A")
         @test length(pos) == 2
         @test pos[1] == SVector(0.0, 0.0)
