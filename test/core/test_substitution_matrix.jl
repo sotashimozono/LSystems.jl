@@ -9,7 +9,7 @@ using LinearAlgebra
         res = substitution_matrix(tile, restrict_level=0)
         M = res.matrix
         idx = res.lookup
-        
+
         @test size(M) == (5, 5)
         @test issetequal(res.alphabet, ['+', '-', 'A', 'B', 'F'])
 
@@ -40,10 +40,10 @@ using LinearAlgebra
         res = substitution_matrix(tile, restrict_level=1)
         M = res.matrix
         idx = res.lookup
-        
+
         @test 'A' in res.alphabet
         @test 'F' in res.alphabet
-        
+
         col_A = idx['A']
         @test M[idx['A'], col_A] == 2
         @test M[idx['B'], col_A] == 2
@@ -65,10 +65,10 @@ using LinearAlgebra
         # 物理空間 'F' のみに制限された有効行列
         res = substitution_matrix(tile, restrict_level=2)
         M_eff = res.matrix
-        
+
         @test res.alphabet == ['F']
         @test size(M_eff) == (1, 1)
-        
+
         # 有効ハミルトニアン的な観点から、1ステップで F が 4つ分に
         # XXX : 本来であれば平均サイト数成長率として level 1 での最大固有値をおろしたい。
         @test Float64(M_eff[1, 1]) ≈ 1.0 atol=1e-8
@@ -84,7 +84,7 @@ end
         res = substitution_matrix(tile, restrict_level=0)
         M = res.matrix
         idx = res.lookup
-        
+
         @test size(M) == (4, 4)
         @test issetequal(res.alphabet, ['+', '-', 'A', 'B'])
 
@@ -112,9 +112,9 @@ end
         res = substitution_matrix(tile, restrict_level=1)
         M = res.matrix
         idx = res.lookup
-        
+
         @test issetequal(res.alphabet, ['A', 'B'])
-        
+
         # 固有値解析: ダイナミクスの核心を調べる
         # A, B の再帰ブロック [4 3; 3 4] の固有値は 7 (4+3) と 1 (4-3)
         # この "7" こそが Gosper 島の面積拡大率 (Scaling Factor) に対応する
@@ -127,10 +127,10 @@ end
         res = substitution_matrix(tile, restrict_level=2)
         M_eff = res.matrix
         idx = res.lookup
-        
+
         @test issetequal(res.alphabet, ['A', 'B'])
         @test size(M_eff) == (2, 2)
-        
+
         # 物理サイト A, B 間の遷移行列が正しく抽出されているか
         # [M_AA M_AB] = [4 3]
         # [M_BA M_BB]   [3 4]
@@ -138,7 +138,7 @@ end
         @test M_eff[idx['B'], idx['A']] == 3
         @test M_eff[idx['A'], idx['B']] == 3
         @test M_eff[idx['B'], idx['B']] == 4
-        
+
         # 物理サイトの総数成長率が最大固有値 7.0 と一致することを期待
         λ_eff = LinearAlgebra.eigvals(Array(Float64.(M_eff)))
         @test maximum(real.(λ_eff)) ≈ 7.0 atol=1e-8
