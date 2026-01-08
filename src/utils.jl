@@ -24,6 +24,7 @@ function grow_step(tile::AbstractTiles, current_str::String)
     return new_str
 end
 export grow_step
+
 """
     string2positions(tile::AbstractTiles{2,T}, lstring::String) where {T}
 作成したstringをもとに、タイルの描画に必要な座標配列を生成する
