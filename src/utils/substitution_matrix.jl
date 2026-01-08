@@ -42,28 +42,28 @@ function substitution_matrix(tile::AbstractTiles; restrict_level::Int=0)
     # 1. フル空間の行列と情報を取得
     res_full = substitution_matrix_full(tile)
     M_full = res_full.matrix
-    
+
     if restrict_level == 0
         return res_full
     end
-    
+
     # 2. 制限する空間の基底（文字セット）を取得
     basis_set = substitution_matrix_basis(tile, restrict_level)
     target_alphabet = sort([c for c in basis_set if haskey(res_full.lookup, c)])
     indices = [res_full.lookup[c] for c in target_alphabet]
-    
+
     # 3. フル空間のインデックスの中から、抽出対象のインデックスを特定
     # alphabet は sort されているため、ここでもソートして順序を一貫させる
     target_alphabet = sort([c for c in basis_set if haskey(res_full.lookup, c)])
     indices = [res_full.lookup[c] for c in target_alphabet]
-    
+
     # 4. 射影 (PMP) の実行：スライス操作が P * M * P' に相当
     M_proj = M_full[indices, indices]
-    
+
     # 新しい lookup を作成
     new_lookup = Dict(c => i for (i, c) in enumerate(target_alphabet))
-    
-    return (matrix = M_proj, alphabet = target_alphabet, lookup = new_lookup)
+
+    return (matrix=M_proj, alphabet=target_alphabet, lookup=new_lookup)
 end
 export substitution_matrix
 
@@ -87,8 +87,8 @@ function substitution_matrix_full(tile::AbstractTiles)
     for (j, char_j) in enumerate(alphabet)
         # 置換ルールを取得
         replacement = get(tile.rules, char_j, string(char_j))
-        
-        counts = Dict{Char, Int}()
+
+        counts = Dict{Char,Int}()
         for c in replacement
             counts[c] = get(counts, c, 0) + 1
         end
@@ -103,9 +103,6 @@ function substitution_matrix_full(tile::AbstractTiles)
         end
     end
     M = sparse(I_coords, J_coords, V_values, n, n)
-    return (matrix = M, alphabet = alphabet, lookup = lookup)
+    return (matrix=M, alphabet=alphabet, lookup=lookup)
 end
 export substitution_matrix_full
-
-
-
