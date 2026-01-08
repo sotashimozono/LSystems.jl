@@ -11,7 +11,7 @@ makedocs(;
         "Substitution Matrix" => "substitution_matrix.md",
         "API Reference" => "api.md",
         "Library" => "library.md",
-    ]
+    ],
     warnonly=[:missing_docs, :cross_references],
 )
 
