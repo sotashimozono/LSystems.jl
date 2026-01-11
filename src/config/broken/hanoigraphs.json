@@ -1,0 +1,11 @@
+{
+  "name": "HanoiGraph",
+  "axiom": "G(1, 2, 3)",
+  "rules": {
+    "G(u, v, w)": "G(u, uv, uw) G(uv, v, vw) G(uw, vw, w)"
+  },
+  "metadata": {
+    "description": "The state-transition graph of the Tower of Hanoi. A graph G with corners (u, v, w) is composed of three subgraphs connected at their respective mid-points (uv, uw, vw).",
+    "type": "Relational-L-System"
+  }
+}

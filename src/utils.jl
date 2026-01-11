@@ -50,9 +50,9 @@ function string2positions(tile::AbstractTiles{2,T}, lstring::String) where {T}
                 curr_pos += curr_dir
                 push!(positions, curr_pos)
             elseif cmd == '+'
-                curr_dir = rot_left * curr_dir
+                curr_dir = normalize(rot_left * curr_dir)
             elseif cmd == '-'
-                curr_dir = rot_right * curr_dir
+                curr_dir = normalize(rot_right * curr_dir)
             elseif cmd == '['
                 push!(stack, (curr_pos, curr_dir))
             elseif cmd == ']'
@@ -67,4 +67,3 @@ function string2positions(tile::AbstractTiles{2,T}, lstring::String) where {T}
     end
     return positions
 end
-export string2positions

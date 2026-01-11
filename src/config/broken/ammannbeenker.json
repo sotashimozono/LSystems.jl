@@ -1,0 +1,18 @@
+{
+  "name": "AmmannBeenkerLSystem",
+  "axiom": "[X]+[X]+[X]+[X]+[X]+[X]+[X]+[X]",
+  "accept": ["F"],
+  "angle": 45.0,
+  "rules": {
+    "X": "XF+YF++YF-XF--XFXF-YF+",
+    "Y": "-XF+YFYF++YF+XF--XF-YF",
+    "F": "F"
+  },
+  "metadata": {
+    "description": "Standard 8-fold Ammann-Beenker tiling generated via L-system. The rules are based on the silver-ratio substitution, forming a non-periodic lattice of squares and rhombi.",
+    "figure": {
+      "shape": "shape.png"
+    },
+    "comment": "Penrose tile のように生成できるかと思ったけどやっぱり非自明で難しい。geminiに雑に既存の結果があれば教えてもらおうと思ったけど、そんな簡単な話でもないようだ"
+  }
+}

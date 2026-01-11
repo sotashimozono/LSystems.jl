@@ -1,3 +1,5 @@
+ENV["GKSwstype"] = "100"
+
 using LSystems
 using Plots
 

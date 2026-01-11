@@ -1,0 +1,15 @@
+{
+  "name": "CayleyTree",
+  "axiom": "F",
+  "accept":["F"],
+  "angle": 120,
+  "rules": {
+    "F": "F[+F][-F]"
+  },
+  "metadata": {
+    "description": "Cayley Tree is one example of Bethe Lattice in case z=3. It starts from center site and all site has constant nearest neighbors z, there exists no closed-loop.",
+    "figure": {
+      "shape": "shape.png"
+    }
+  }
+}

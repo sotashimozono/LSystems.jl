@@ -1,5 +1,4 @@
 abstract type AbstractTiles{N,T} end
-
 function build_lsystem_type(filepath::String)
     json_content = read(filepath, String)
     data = JSON3.read(json_content)
