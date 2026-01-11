@@ -26,5 +26,4 @@ for (name, lsys) in DEFINED_LSYSTEMS
     path = joinpath(LSystems.FIGURE_DIR, "$(name)")
     isdir(path) || mkpath(path)
     savefig(p, joinpath(path, "shape.png"))
-    @show name
 end
