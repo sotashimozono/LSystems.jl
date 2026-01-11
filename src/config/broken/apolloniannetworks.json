@@ -1,0 +1,11 @@
+{
+  "name": "Apollonian",
+  "axiom": "T(1, 2, 3)",
+  "rules": {
+    "T(a, b, c)": "T(a, b, d) T(b, c, d) T(c, a, d)"
+  },
+  "metadata": {
+    "description": "Recursive subdivision of a triangle. A new node 'd' is placed in the center of face (a, b, c) and connected to all three vertices.",
+    "type": "Relational-L-System"
+  }
+}

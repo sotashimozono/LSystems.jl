@@ -1,0 +1,15 @@
+{
+  "name": "TernaryBranching",
+  "axiom": "F",
+  "accept":["F"],
+  "angle": 90,
+  "rules": {
+    "F": "F[+F][F][-F]"
+  },
+  "metadata": {
+    "description": "TernaryBranching is one example of Bethe Lattice in case z=4. It starts from center site and all site has constant nearest neighbors z, there exists no closed-loop.\n comment: Graph seems broken, but topology should be matched. mapping method should be fixed.",
+    "figure": {
+      "shape": "shape.png"
+    }
+  }
+}
