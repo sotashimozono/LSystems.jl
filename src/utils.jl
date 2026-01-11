@@ -67,4 +67,3 @@ function string2positions(tile::AbstractTiles{2,T}, lstring::String) where {T}
     end
     return positions
 end
-
