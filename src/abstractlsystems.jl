@@ -16,9 +16,9 @@ function build_lsystem_type(filepath::String)
     figure_path = joinpath("assets", "figures", asset_path)
     fig_name = joinpath(figure_path, meta.figure.shape)
     # rules table
-    sorted_rules = sort(collect(rules_dict), by = x -> x[1])
+    sorted_rules = sort(collect(rules_dict); by=x -> x[1])
     rules_md_rows = join(["| **$(r[1])** | `$(r[2])` |" for r in sorted_rules], "\n")
-    
+
     rules_table = """
     ### Substitution Rules
     | Left | Right |
@@ -42,7 +42,7 @@ function build_lsystem_type(filepath::String)
     | **Accept Symbols** | `$(data.accept)` |
         
     $rules_table
-    
+
     ### Metadata
     | Key | Value |
     | :--- | :--- |
