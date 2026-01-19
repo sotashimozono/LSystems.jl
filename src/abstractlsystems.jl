@@ -2,18 +2,29 @@ abstract type AbstractTiles{N,T} end
 function build_lsystem_type(filepath::String)
     json_content = read(filepath, String)
     data = JSON3.read(json_content)
-
+    # prepare struct components
     struct_name = Symbol(data.name)
     rules_dict = Dict{Char,String}(String(k)[1] => v for (k, v) in data.rules)
     accept_set = Set{Char}(String(s)[1] for s in data.accept)
 
+    ## prepare documentation (meta information)
     meta = data.metadata
     desc = get(meta, :description, "$(data.name) L-System Model")
-
+    # figure path
     base_name = basename(filepath)
     asset_path = splitext(base_name)[1]
     figure_path = joinpath("assets", "figures", asset_path)
     fig_name = joinpath(figure_path, meta.figure.shape)
+    # rules table
+    sorted_rules = sort(collect(rules_dict), by = x -> x[1])
+    rules_md_rows = join(["| **$(r[1])** | `$(r[2])` |" for r in sorted_rules], "\n")
+    
+    rules_table = """
+    ### Substitution Rules
+    | Left | Right |
+    | :--- | :--- |
+    $rules_md_rows
+    """
 
     doc_text = """
         $(data.name){N, T} <: AbstractTiles{N, T}
@@ -29,14 +40,16 @@ function build_lsystem_type(filepath::String)
     | **Axiom** | `$(data.axiom)` |
     | **Angle** | $(data.angle)° |
     | **Accept Symbols** | `$(data.accept)` |
-
+        
+    $rules_table
+    
     ### Metadata
     | Key | Value |
     | :--- | :--- |
     | **Source File** | `$(splitpath(filepath)[end])` |
     | **Type** | L-System |
     """
-
+    # construct the type directly
     instance = @eval begin
         struct $struct_name{N,T} <: AbstractTiles{N,T}
             axiom::String
@@ -53,9 +66,9 @@ function build_lsystem_type(filepath::String)
                 $accept_set,
             )
         end
-
+        # attach documentation
         @doc $doc_text $struct_name
-
+        # return an instance
         $struct_name()
     end
 
