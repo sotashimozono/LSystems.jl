@@ -10,20 +10,22 @@ favicon_path = joinpath(assets_dir, "favicon.ico")
 
 Downloads.download("https://github.com/sotashimozono.png", favicon_path)
 
-makedocs(
-    sitename = "LSystems.jl",
+makedocs(;
+    sitename="LSystems.jl",
     modules=[LSystems],
-    format = Documenter.HTML(
-        canonical = "https://codes.sota-shimozono.com/LSystems.jl/stable/",
-        prettyurls = get(ENV, "CI", "false") == "true",
-        mathengine = MathJax3(Dict(
-            :tex => Dict(
-                :inlineMath => [["\$", "\$"], ["\\(", "\\)"]],
-                :tags => "ams",
-                :packages => ["base", "ams", "autoload", "physics"]
+    format=Documenter.HTML(;
+        canonical="https://codes.sota-shimozono.com/LSystems.jl/stable/",
+        prettyurls=get(ENV, "CI", "false") == "true",
+        mathengine=MathJax3(
+            Dict(
+                :tex => Dict(
+                    :inlineMath => [["\$", "\$"], ["\\(", "\\)"]],
+                    :tags => "ams",
+                    :packages => ["base", "ams", "autoload", "physics"],
+                ),
             ),
-        )),
-        assets = ["assets/favicon.ico"],
+        ),
+        assets=["assets/favicon.ico"],
     ),
     pages=[
         "Home" => "index.md",
